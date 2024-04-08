@@ -50,7 +50,7 @@ const Login = () => {
     mutate(data);
   };
 
-  if (isAuthenticated && user?.role?.toLowerCase() === "admin") {
+  if (isAuthenticated ) {
     return <Navigate to="/" />;
   }
   return (
