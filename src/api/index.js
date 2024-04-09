@@ -7,15 +7,15 @@ export const API = {
   logout: BACKEND_BASE_URL + "/logout", //to logout user
 
   // order
-  getOrders: BACKEND_BASE_URL + "/admin/orders",  // to get all orders
-  getSingleOrder: BACKEND_BASE_URL + "/order",  // to get single orders
-  updateOrder: BACKEND_BASE_URL + "/admin/order",  // to update orders status
+  getOrders: BACKEND_BASE_URL + "/admin/orders", // to get all orders
+  getSingleOrder: BACKEND_BASE_URL + "/order", // to get single orders
+  updateOrder: BACKEND_BASE_URL + "/admin/order", // to update orders status
 
   // product
-  getAdminProducts: BACKEND_BASE_URL + "/admin/product",  //to get Admin Product
-  createProduct: BACKEND_BASE_URL + "/createproduct",  //to create Product
-  deleteProduct: BACKEND_BASE_URL + "/product",  //to delete Product
-  getProductDetail: BACKEND_BASE_URL + "/product",  //to get details of  Product
+  getAdminProducts: BACKEND_BASE_URL + "/admin/product", //to get Admin Product
+  createProduct: BACKEND_BASE_URL + "/createproduct", //to create Product
+  deleteProduct: BACKEND_BASE_URL + "/product", //to delete Product
+  getProductDetail: BACKEND_BASE_URL + "/product", //to get details of  Product
 
   //dashboard
   dashboard: BACKEND_BASE_URL + "/admin/dashboard", //to get dashboard details
@@ -28,4 +28,8 @@ export const API = {
 
   //users
   userDetails: BACKEND_BASE_URL + "/admin/users", //to get all users details
+
+  //reviews
+  allReviews: BACKEND_BASE_URL + "/areviews", //to get all reviews
+  updateReviewStatus: BACKEND_BASE_URL + "/reviewstatus", //to delete review
 };
