@@ -45,8 +45,8 @@ const ROUTES = [
     component: lazy(async () => await import("../pages/Login/index")),
   },
   {
-    path: "/reviews",
-    component: lazy(async () => await import("../pages/AddDoctor/index")),
+    path: "/Blog",
+    component: lazy(async () => await import("../pages/Blog/index")),
   },
   {
     path: "*",
