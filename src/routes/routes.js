@@ -37,6 +37,10 @@ const ROUTES = [
     component: lazy(async () => await import("../pages/User/index")),
   },
   {
+    path: "/connected-users",
+    component: lazy(async () => await import("../pages/ConnectedUser/index")),
+  },
+  {
     path: "/coupons",
     component: lazy(async () => await import("../pages/Coupons/index")),
   },
