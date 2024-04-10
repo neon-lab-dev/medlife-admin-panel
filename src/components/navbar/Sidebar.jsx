@@ -27,7 +27,7 @@ const Sidebar = () => {
     },
     {
       label: "Connected User",
-      path: "/Connected-user",
+      path: "/connected-users",
     },
     {
       label: "Reviews",

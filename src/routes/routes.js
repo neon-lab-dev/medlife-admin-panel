@@ -41,6 +41,10 @@ const ROUTES = [
     component: lazy(async () => await import("../pages/User/index")),
   },
   {
+    path: "/connected-users",
+    component: lazy(async () => await import("../pages/ConnectedUser/index")),
+  },
+  {
     path: "/coupons",
     component: lazy(async () => await import("../pages/Coupons/index")),
   },
@@ -48,10 +52,10 @@ const ROUTES = [
     path: "/login",
     component: lazy(async () => await import("../pages/Login/index")),
   },
-  // {
-  //   path: "/reviews",
-  //   component: lazy(async () => await import("../pages/AddDoctor/index")),
-  // },
+  {
+    path: "/reviews",
+    component: lazy(async () => await import("../pages/Reviews/index")),
+  },
   {
     path: "*",
     component: lazy(async () => await import("../pages/Error/404")),
