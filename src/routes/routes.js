@@ -27,20 +27,12 @@ const ROUTES = [
     // doctor end
   },
   {
-    path: "/orders",
-    component: lazy(async () => await import("../pages/Orders/index")),
-  },
-  {
     path: "/users",
     component: lazy(async () => await import("../pages/User/index")),
   },
   {
     path: "/connected-users",
     component: lazy(async () => await import("../pages/ConnectedUser/index")),
-  },
-  {
-    path: "/coupons",
-    component: lazy(async () => await import("../pages/Coupons/index")),
   },
   {
     path: "/login",
@@ -54,7 +46,6 @@ const ROUTES = [
     path: "/blog",
     component: lazy(async () => await import("../pages/Blog/index")),
   },
-
   {
     path: "*",
     component: lazy(async () => await import("../pages/Error/404")),
