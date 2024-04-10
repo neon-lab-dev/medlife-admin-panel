@@ -57,9 +57,10 @@ const User = () => {
     if (userData) {
       const filteredData = searchObjects(userData, searchQuery, [
         "_id",
-        "full_name",
-        "phoneNo",
-        "email",
+        "name",
+        "mobileNumber",
+        "city",
+        "disease",
       ]);
       setFilteredData(filteredData);
     }
@@ -75,7 +76,7 @@ const User = () => {
         <div className=" justify-between flex items-center ">
           {/* Searchbar */}
           <Searchbar
-            placeholder="Search by ID, Name, Email, Mobile No"
+            placeholder="Search by ID, Name, City, Mobile No, Disease"
             onChange={(e) => {
               setSearchQuery(e.target.value);
               setStartingIndex(0);
