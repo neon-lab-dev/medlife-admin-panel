@@ -1,10 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import iconDelete from "../../assets/icon/delete.svg";
 import Searchbar from "../../components/Searchbar";
 import downloadIcon from "../../assets/icon/download.svg";
-import coupon from "../../assets/icon/coupon.svg";
-import { getAllBlog, deleteCoupon } from "../../api/coupon.js";
+import { getAllBlog, deleteBlog } from "../../api/coupon.js";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import AppLoading from "../../components/loaders/AppLoading.jsx";
@@ -16,15 +14,16 @@ import { searchObjects } from "../../utils/search.js";
 import { reversed } from "../../utils/reversed.js";
 import NoDataFound from "../../components/NoDataFound.jsx";
 import jsonToXlsx from "../../utils/jsonAsXlsx.js";
-import CreateBlog from "./CreateBlog.jsx";
-import BlogButton from '../../assets/images/blogbutton.png'
+import BlogButton from "../../assets/images/blogbutton.png";
 import CreateBlogModal from "./CreateBlog.jsx";
+import UpdateBlogModal from "./UpdateBlog.jsx";
 
 const Coupons = () => {
   const [startingIndex, setStartingIndex] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [idToDelete, setIdToDelete] = useState("");
+  const [activeBlogToUpdate, setActiveBlogToUpdate] = useState({});
 
   const queryClient = useQueryClient();
   // API fetching
@@ -33,14 +32,14 @@ const Coupons = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["coupons"],
+    queryKey: ["blogs"],
     queryFn: () => getAllBlog(),
   });
 
   // to delete the Blog
   const { mutate, isPending } = useMutation({
-    mutationKey: ["deleteCoupon"],
-    mutationFn: (id) => deleteCoupon(id),
+    mutationKey: ["deleteBlogs"],
+    mutationFn: (id) => deleteBlog(id),
     gcTime: Infinity,
     onError: (error) => {
       Swal.fire({
@@ -51,7 +50,7 @@ const Coupons = () => {
     },
     onSuccess: () => {
       setIdToDelete("");
-      queryClient.invalidateQueries({ queryKey: ["coupons"] });
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
       Swal.fire({
         title: "Deleted!",
         text: `Blog has been deleted.`,
@@ -80,11 +79,7 @@ const Coupons = () => {
 
   useEffect(() => {
     if (allCouponsData) {
-      const data = searchObjects(allCouponsData, searchQuery, [
-        "_id",
-        "title",
-        "avatar.url",
-      ]);
+      const data = searchObjects(allCouponsData, searchQuery, ["_id", "title"]);
       setFilteredData(reversed(data));
     }
   }, [allCouponsData, searchQuery]);
@@ -111,6 +106,7 @@ const Coupons = () => {
           </button>
           {/* couponModal */}
           <CreateBlogModal />
+          <UpdateBlogModal data={activeBlogToUpdate} />
         </div>
         <div className="bg-white overflow-x-auto mt-3 rounded-[16px] p-4 px-5">
           <div className=" justify-between flex items-center ">
@@ -179,12 +175,23 @@ const Coupons = () => {
                                   {item.title}
                                 </td>
                                 <td className="opacity-80  font-lato  font-semibold w-1/5 min-w-[150px] text-center text-[14px] px-3">
-                                  <img className="object-contain object-center h-[93px] rounded-lg min-w-[78px] w-[78px] ml-[100px]" 
-                                  src={item.avatar.url} alt="blog_image" />
+                                  <img
+                                    className="object-contain object-center h-[93px] rounded-lg min-w-[78px] w-[78px] ml-[100px]"
+                                    src={item.avatar.url}
+                                    alt="blog_image"
+                                  />
                                 </td>
                                 <td className="opacity-80 w-1/5 min-w-[100px]">
                                   <div className="flex gap-4 place-content-center">
-                                  <button className=" font-semibold p-2 rounded-lg border-violet-900 text-[#7131ae] border">
+                                    <button
+                                      onClick={() => {
+                                        setActiveBlogToUpdate(item);
+                                        document
+                                          .getElementById("update_blog")
+                                          ?.showModal();
+                                      }}
+                                      className=" font-semibold p-2 rounded-lg border-violet-900 text-[#7131ae] border"
+                                    >
                                       Update
                                     </button>
                                     <button onClick={() => handleClick(item)}>
@@ -194,7 +201,6 @@ const Coupons = () => {
                                         <img src={iconDelete} />
                                       )}
                                     </button>
-                                  
                                   </div>
                                 </td>
                               </tr>
