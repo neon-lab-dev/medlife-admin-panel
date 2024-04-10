@@ -18,9 +18,9 @@ const RootLayout = ({ children }) => {
   }
   if (isAuthenticating) return <AppLoading />;
   if (pathname === "/login") return children;
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/login" />;
+  // }
   // if (isAuthenticated && user?.role?.toLowerCase() !== "admin") {
   //   Swal.fire({
   //     icon: "error",
