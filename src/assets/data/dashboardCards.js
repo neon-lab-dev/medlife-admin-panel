@@ -19,8 +19,8 @@ const DASHBOARD_CARDS = [
     queryKey: "totalOrdersAmount",
   },
   {
-    image: icon1,
-    title: "Conneted User",
+    image:  icon1,
+    title: "Connected User",
     queryKey: "totalOrdersAmountCancelled",
   },
 ];

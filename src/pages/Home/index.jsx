@@ -34,21 +34,16 @@ const Home = () => {
   });
 
   useEffect(() => {
-    if (isSuccess) {
-      const {
-        allUserCountData,
-        connectedUserCountData,
-        doctorCountData,
-        reviewsCountData,
-      } = allUserData;
-      setDetails({
-        "Active User": allUserCountData,
-        "Connected User": connectedUserCountData,
-        Doctors: doctorCountData,
-        Reviews: reviewsCountData,
-      });
-    }
-  }, [isSuccess]);
+    if(isSuccess){
+    const { allUserCountData, connectedUserCountData,doctorCountData,reviewsCountData } = allUserData;
+    setDetails({
+      "Active User":allUserCountData,
+      "Connected User":connectedUserCountData,
+      "Doctors":doctorCountData,
+      "Reviews":reviewsCountData
+    }); 
+  }
+  }, [isSuccess])
 
   return (
     <div className="text-primary bg-[#F5F6FA] h-full w-full px-6 py-2">
