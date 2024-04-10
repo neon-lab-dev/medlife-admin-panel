@@ -104,7 +104,7 @@ const Coupons = () => {
             <div className="flex items-center justify-center">
               <img src={BlogButton} className="w-[30px]" />
               <p className="text-white text-sm font-semibold font-lato tracking-tight ml-[10px]">
-                Create Coupon
+                Create Blog
               </p>
             </div>
           </button>
