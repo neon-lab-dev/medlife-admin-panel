@@ -1,17 +1,17 @@
 import axios from "axios";
 import { API } from ".";
 
-export const getAllCoupon = () => {
+export const getAllBlog = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(API.allCoupon, {
+      .get(API.allBlogs, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        resolve(res.data?.coupons || []);
+        resolve(res.data?.blogs || []);
       })
       .catch((err) => {
         reject(
@@ -22,12 +22,11 @@ export const getAllCoupon = () => {
   });
 };
 
-export const createCoupon = ({ code, amount }) => {
+export const createCoupon = ({ data }) => {
   return new Promise((resolve, reject) => {
     axios
       .post(
-        API.newCoupon,
-        { code, amount },
+        API.newCoupon,data,
         {
           withCredentials: true,
           headers: {
@@ -36,7 +35,7 @@ export const createCoupon = ({ code, amount }) => {
         }
       )
       .then((res) => {
-        resolve(res.data);
+        resolve(res.data?.blogs);
       })
       .catch((err) => {
         reject(
@@ -49,7 +48,7 @@ export const createCoupon = ({ code, amount }) => {
 export const deleteCoupon = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .delete(`${API.coupon}/${id}`, {
+      .delete(`${API.Blog}/${id}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +60,7 @@ export const deleteCoupon = (id) => {
       .catch((err) => {
         reject(
           err?.response?.data?.message ||
-            "Error deleting coupon, please try again"
+            "Error deleting blog, please try again"
         );
       });
   });

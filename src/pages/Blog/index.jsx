@@ -4,7 +4,7 @@ import iconDelete from "../../assets/icon/delete.svg";
 import Searchbar from "../../components/Searchbar";
 import downloadIcon from "../../assets/icon/download.svg";
 import coupon from "../../assets/icon/coupon.svg";
-import { getAllCoupon, deleteCoupon } from "../../api/coupon.js";
+import { getAllBlog, deleteCoupon } from "../../api/coupon.js";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import AppLoading from "../../components/loaders/AppLoading.jsx";
@@ -16,8 +16,9 @@ import { searchObjects } from "../../utils/search.js";
 import { reversed } from "../../utils/reversed.js";
 import NoDataFound from "../../components/NoDataFound.jsx";
 import jsonToXlsx from "../../utils/jsonAsXlsx.js";
-import CreateCouponModal from "./CreateBlog.jsx";
+import CreateBlog from "./CreateBlog.jsx";
 import BlogButton from '../../assets/images/blogbutton.png'
+import CreateBlogModal from "./CreateBlog.jsx";
 
 const Coupons = () => {
   const [startingIndex, setStartingIndex] = useState(0);
@@ -33,10 +34,10 @@ const Coupons = () => {
     isError,
   } = useQuery({
     queryKey: ["coupons"],
-    queryFn: () => getAllCoupon(),
+    queryFn: () => getAllBlog(),
   });
 
-  // to delete the coupon
+  // to delete the Blog
   const { mutate, isPending } = useMutation({
     mutationKey: ["deleteCoupon"],
     mutationFn: (id) => deleteCoupon(id),
@@ -53,7 +54,7 @@ const Coupons = () => {
       queryClient.invalidateQueries({ queryKey: ["coupons"] });
       Swal.fire({
         title: "Deleted!",
-        text: `Coupon has been deleted.`,
+        text: `Blog has been deleted.`,
         icon: "success",
       });
     },
@@ -80,9 +81,9 @@ const Coupons = () => {
   useEffect(() => {
     if (allCouponsData) {
       const data = searchObjects(allCouponsData, searchQuery, [
-        "code",
         "_id",
-        "amount",
+        "title",
+        "avatar.url",
       ]);
       setFilteredData(reversed(data));
     }
@@ -98,7 +99,7 @@ const Coupons = () => {
           <button
             className="w-48 h-[50px] text-white bg-[#60AFBD] rounded-[6px]"
             onClick={() =>
-              document.getElementById("create_new_coupon").showModal()
+              document.getElementById("create_new_blog").showModal()
             }
           >
             <div className="flex items-center justify-center">
@@ -109,7 +110,7 @@ const Coupons = () => {
             </div>
           </button>
           {/* couponModal */}
-          <CreateCouponModal />
+          <CreateBlogModal />
         </div>
         <div className="bg-white overflow-x-auto mt-3 rounded-[16px] p-4 px-5">
           <div className=" justify-between flex items-center ">
@@ -153,7 +154,7 @@ const Coupons = () => {
                         Images
                       </th>
                       <th className=" text-neutral-800 text-sm font-bold font-lato text-center px-3">
-                        Action 
+                        Action
                       </th>
                     </tr>
                   </thead>
@@ -175,13 +176,17 @@ const Coupons = () => {
                                   #{item._id}
                                 </td>
                                 <td className="opacity-80 font-lato font-semibold text-[14px] text-center w-1/5 min-w-[150px] text-black     px-3">
-                                  {item.code}
+                                  {item.title}
                                 </td>
-                                <td className="opacity-80  font-lato font-semibold w-1/5 min-w-[150px] text-center text-[14px] px-3">
-                                  ₹{item.amount}
+                                <td className="opacity-80  font-lato  font-semibold w-1/5 min-w-[150px] text-center text-[14px] px-3">
+                                  <img className="object-contain object-center h-[93px] rounded-lg min-w-[78px] w-[78px] ml-[100px]" 
+                                  src={item.avatar.url} alt="blog_image" />
                                 </td>
                                 <td className="opacity-80 w-1/5 min-w-[100px]">
-                                  <div className="flex place-content-center">
+                                  <div className="flex gap-4 place-content-center">
+                                  <button className=" font-semibold p-2 rounded-lg border-violet-900 text-[#7131ae] border">
+                                      Update
+                                    </button>
                                     <button onClick={() => handleClick(item)}>
                                       {isPending && item._id == idToDelete ? (
                                         <Deleting />
@@ -189,6 +194,7 @@ const Coupons = () => {
                                         <img src={iconDelete} />
                                       )}
                                     </button>
+                                  
                                   </div>
                                 </td>
                               </tr>

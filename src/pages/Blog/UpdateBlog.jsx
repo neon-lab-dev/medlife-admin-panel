@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import AppFormErrorLine from "../../components/AppFromErrorLine";
 import { useState } from "react";
 
-const CreateCouponModal = () => {
+const UpdateBlog = () => {
     const queryClient = useQueryClient();
     const [selectedImage, setSelectedImage] = useState(null);
     const {
@@ -50,7 +50,7 @@ const CreateCouponModal = () => {
     return (
         <>
             {/*Blog Modal Start */}
-            <dialog id="create_blog" className="modal">
+            <dialog id="Update_blog" className="modal">
                 <div className="modal-box lg:w-[863px] lg:h-[810px] sm:h-[1/6] w-5/6 max-w-5xl h-1/2 max-h-5xl">
                     <form method="dialog">
                         <button
@@ -179,4 +179,4 @@ const CreateCouponModal = () => {
     );
 };
 
-export default CreateCouponModal;
+export default UpdateBlog;
