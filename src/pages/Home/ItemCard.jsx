@@ -1,7 +1,7 @@
 import React from "react";
 
 const ItemCard = (props) => {
-  let{title,details,image}=props
+  const { title, details, image } = props;
 
   return (
     <div className="w-[240px] lg:w-[262px] h-[127px] bg-white rounded-[14px] shadow flex justify-between px-5 py-4">

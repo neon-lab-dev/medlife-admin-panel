@@ -46,7 +46,6 @@ const ROUTES = [
     path: "/blog",
     component: lazy(async () => await import("../pages/Blog/index")),
   },
-
   {
     path: "*",
     component: lazy(async () => await import("../pages/Error/404")),

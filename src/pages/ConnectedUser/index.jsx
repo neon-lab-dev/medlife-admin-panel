@@ -36,11 +36,10 @@ const ConnectedUser = () => {
     }
   }, [connectedUserData, searchQuery]);
 
-
   return (
     <div className="bg-[#F5F6FA] min-h-full w-full p-6 pb-11">
       <h1 className="font-lato text-[32px] font-bold text-black leading-[38.4px] ">
-        All Connected Users 
+        All Connected Users
       </h1>
 
       <div className="bg-white overflow-x-auto mt-3 rounded-[16px] p-4 px-5">
@@ -55,7 +54,7 @@ const ConnectedUser = () => {
           />
           <div className="flex items-center gap-6">
             {/* downloadIcon */}
-           
+
             <button
               disabled={isLoading || isError}
               onClick={() => jsonToXlsx(connectedUserData, "Connected users")}
@@ -83,13 +82,13 @@ const ConnectedUser = () => {
                       Name
                     </th>
                     <th className="font-bold font-lato text-black text-[14px]  text-center px-3">
-                    Mobile No
+                      Mobile No
                     </th>
                     <th className="font-bold font-lato text-black text-[14px]  text-center px-3">
                       City
                     </th>
                     <th className="font-bold font-lato text-black text-[14px]  text-center px-3">
-                    Disease
+                      Disease
                     </th>
                   </tr>
                 </thead>
