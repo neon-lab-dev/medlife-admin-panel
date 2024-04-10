@@ -1,17 +1,17 @@
 import axios from "axios";
 import { API } from ".";
 
-export const getUserDetails = () => {
+export const getAllReviews = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(API.userDetails, {
+      .get(API.allReviews, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        resolve(res?.data?.leads);
+        resolve(res.data?.review || []);
       })
       .catch((err) => {
         reject(
@@ -21,42 +21,46 @@ export const getUserDetails = () => {
       });
   });
 };
-export const getConnectedUserDetails = () => {
+
+export const deleteReview = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(API.connectedUserDetails, {
+      .delete(`${API.updateReviewStatus}/${id}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        resolve(res?.data?.users);
+        resolve(res.data);
       })
       .catch((err) => {
         reject(
-          err?.response?.data?.message ||
-            "Something went wrong, please try again"
+          err?.response?.data?.message || "Delete failed, please try again"
         );
       });
   });
 };
-export const updateStatus = (_id) => {
+
+export const approveReview = (id) => {
   return new Promise((resolve, reject) => {
     axios
-      .put(`${API.userStatus}/`+_id, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .put(
+        `${API.updateReviewStatus}/${id}`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
-        resolve(res?.data?.users);
+        resolve(res.data);
       })
       .catch((err) => {
         reject(
-          err?.response?.data?.message ||
-            "Something went wrong, please try again"
+          err?.response?.data?.message || "Approve failed, please try again"
         );
       });
   });

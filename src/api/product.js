@@ -3,10 +3,10 @@ import { API } from "."
 
 
 
-export const getAllProducts = () => {
+export const getAllDoctors = () => {
 
     return new Promise((resolve, reject) => {
-        axios.get(API.getAdminProducts, {
+        axios.get(API.getAllDoctors, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"
@@ -21,15 +21,12 @@ export const getAllProducts = () => {
                     "Something went wrong, please try again"
                 )
             })
-
     })
-
-
 }
 
-export const createProduct = (productData) => {
+export const createDoctor = (doctorData) => {
     return new Promise((resolve, reject) => {
-        axios.post(API.createProduct, productData, {
+        axios.post(API.createDoctor, doctorData, {
             withCredentials: true,
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -44,16 +41,13 @@ export const createProduct = (productData) => {
                     "Something went wrong, please try again"
                 )
             })
-
     })
-
-
 }
 
 
-export const deleteProduct = (productId) => {
+export const deleteDoctor = (doctorId) => {
     return new Promise((resolve, reject) => {
-        axios.delete(`${API.deleteProduct}/${productId}`, {
+        axios.delete(`${API.deleteDoctor}/${doctorId}`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -74,9 +68,9 @@ export const deleteProduct = (productId) => {
 
 }
 
-export const getProductDetail = (productId) => {
+export const getDoctorDetail = (doctorId) => {
     return new Promise((resolve, reject) => {
-        axios.get(`${API.getProductDetail}/${productId}`, {
+        axios.get(`${API.getDoctorDetail}/${doctorId}`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -91,8 +85,26 @@ export const getProductDetail = (productId) => {
                     "Something went wrong, please try again"
                 )
             })
-
     })
+}
 
-
+export const updateDoctorDetail = (doctorData) => {
+    return new Promise((resolve, reject) => {
+        axios.put(`${API.updateDoctorDetail}/${doctorData.doctorId}`, doctorData.fd, {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+            .then((res) => {
+                resolve(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+                reject(
+                    err?.response?.data?.message ||
+                    "Something went wrong, please try again"
+                )
+            })
+    })
 }

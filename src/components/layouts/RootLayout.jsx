@@ -18,17 +18,17 @@ const RootLayout = ({ children }) => {
   }
   if (isAuthenticating) return <AppLoading />;
   if (pathname === "/login") return children;
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-  if (isAuthenticated && user?.role?.toLowerCase() !== "admin") {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "You are not authorized to view this page. Please login with an admin account.",
-    });
-    return <Navigate to="/login" />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/login" />;
+  // }
+  // if (isAuthenticated && user?.role?.toLowerCase() !== "admin") {
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Oops...",
+  //     text: "You are not authorized to view this page. Please login with an admin account.",
+  //   });
+  //   return <Navigate to="/login" />;
+  // }
 
   return (
     <div className="flex h-screen">

@@ -7,15 +7,16 @@ export const API = {
   logout: BACKEND_BASE_URL + "/logout", //to logout user
 
   // order
-  getOrders: BACKEND_BASE_URL + "/admin/orders",  // to get all orders
-  getSingleOrder: BACKEND_BASE_URL + "/order",  // to get single orders
-  updateOrder: BACKEND_BASE_URL + "/admin/order",  // to update orders status
+  getOrders: BACKEND_BASE_URL + "/admin/orders", // to get all orders
+  getSingleOrder: BACKEND_BASE_URL + "/order", // to get single orders
+  updateOrder: BACKEND_BASE_URL + "/admin/order", // to update orders status
 
   // product
-  getAdminProducts: BACKEND_BASE_URL + "/admin/product",  //to get Admin Product
-  createProduct: BACKEND_BASE_URL + "/createproduct",  //to create Product
-  deleteProduct: BACKEND_BASE_URL + "/product",  //to delete Product
-  getProductDetail: BACKEND_BASE_URL + "/product",  //to get details of  Product
+  getAllDoctors: BACKEND_BASE_URL + "/doctors", //to get All doctors
+  createDoctor: BACKEND_BASE_URL + "/createdoctor", //to create doctor
+  deleteDoctor: BACKEND_BASE_URL + "/doctor", //to delete Product
+  getDoctorDetail: BACKEND_BASE_URL + "/doctor", //to get details of  Product
+  updateDoctorDetail: BACKEND_BASE_URL + "/doctor", //to get details of  Product
 
   //dashboard
   dashboard: BACKEND_BASE_URL + "/admin/dashboard", //to get dashboard details
@@ -27,5 +28,10 @@ export const API = {
   newCoupon: BACKEND_BASE_URL + "/coupon/new", // coupon details
 
   //users
-  userDetails: BACKEND_BASE_URL + "/admin/users", //to get all users details
+  userDetails: BACKEND_BASE_URL + "/activeleads", //to get all users details
+  connectedUserDetails: BACKEND_BASE_URL + "/connectedleads", //to get all connected users details
+  userStatus: BACKEND_BASE_URL + "/lead", // to get a specified user
+
+  //reviews
+  reviewsDetails: BACKEND_BASE_URL + "/reviews", //to get all reviews details
 };

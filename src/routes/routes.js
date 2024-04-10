@@ -12,21 +12,19 @@ const ROUTES = [
     path: "/dashboard",
     component: lazy(async () => await import("../pages/Home/index")),
   },
+  // doctor start
   {
-    path: "/products",
-    component: lazy(async () => await import("../pages/Products/index")),
+    path: "/doctor",
+    component: lazy(async () => await import("../pages/Doctor/index")),
   },
   {
-    path: "/add-product",
-    component: lazy(
-      async () => await import("../pages/Products/CreateProduct")
-    ),
+    path: "/add-doctor",
+    component: lazy(async () => await import("../pages/Doctor/CreateDoctor")),
   },
   {
-    path: "/update-product/:productId",
-    component: lazy(
-      async () => await import("../pages/Products/UpdateProduct")
-    ),
+    path: "/update-doctor/:doctorId",
+    component: lazy(async () => await import("../pages/Doctor/UpdateDoctor")),
+    // doctor end
   },
   {
     path: "/orders",
@@ -37,6 +35,10 @@ const ROUTES = [
     component: lazy(async () => await import("../pages/User/index")),
   },
   {
+    path: "/connected-users",
+    component: lazy(async () => await import("../pages/ConnectedUser/index")),
+  },
+  {
     path: "/coupons",
     component: lazy(async () => await import("../pages/Coupons/index")),
   },
@@ -45,9 +47,14 @@ const ROUTES = [
     component: lazy(async () => await import("../pages/Login/index")),
   },
   {
-    path: "/Blog",
+    path: "/reviews",
+    component: lazy(async () => await import("../pages/Reviews/index")),
+  },
+  {
+    path: "/blog",
     component: lazy(async () => await import("../pages/Blog/index")),
   },
+
   {
     path: "*",
     component: lazy(async () => await import("../pages/Error/404")),
