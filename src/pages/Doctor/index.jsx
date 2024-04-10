@@ -108,7 +108,7 @@ const Products = () => {
           <div className="flex items-center gap-3">
             {/* downloadIcon */}
             <button
-              onClick={() => jsonToXlsx(data?.products, "products")}
+              onClick={() => jsonToXlsx(data?.doctors, "doctors")}
               className=" bg-lightgray  rounded-[6px]"
             >
               <img src={downloadIcon} alt="" />
