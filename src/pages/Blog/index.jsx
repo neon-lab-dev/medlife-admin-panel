@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import iconDelete from "../../assets/icon/delete.svg";
 import Searchbar from "../../components/Searchbar";
 import downloadIcon from "../../assets/icon/download.svg";
-import { getAllBlog, deleteBlog } from "../../api/coupon.js";
+import { getAllBlog, deleteBlog } from "../../api/blog.js";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import AppLoading from "../../components/loaders/AppLoading.jsx";

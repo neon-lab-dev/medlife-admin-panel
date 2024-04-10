@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import AppFormErrorLine from "../../components/AppFromErrorLine";
 import { useRef, useState } from "react";
-import { createBlog } from "../../api/coupon";
+import { createBlog } from "../../api/blog";
 
 const CreateCouponModal = () => {
   const queryClient = useQueryClient();
@@ -85,7 +85,7 @@ const CreateCouponModal = () => {
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <p className="w-[324px] text-start text-black text-2xl font-semibold font-lato tracking-tight">
-                    Create New Coupon
+                    Create New Blog
                   </p>
                   <input
                     ref={inputRef}
