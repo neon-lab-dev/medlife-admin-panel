@@ -37,6 +37,9 @@ export const API = {
 
   //Blogs
   allBlogs: BACKEND_BASE_URL + "/blogs", //to get all blog details
-  Blog: BACKEND_BASE_URL + "/blog",  // to delete the blog
-  createBlog: BACKEND_BASE_URL + "/createblog"
+  Blog: BACKEND_BASE_URL + "/blog", // to delete the blog
+  createBlog: BACKEND_BASE_URL + "/createblog",
+
+  getAdminReviews: BACKEND_BASE_URL + "/areviews", //to get admin all reviews details
+  updateReviewStatus: BACKEND_BASE_URL + "/reviewstatus", // /:id
 };
