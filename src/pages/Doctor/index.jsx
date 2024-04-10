@@ -35,7 +35,7 @@ const Products = () => {
       });
       Swal.fire({
         title: "Deleted!",
-        text: "Your product has been deleted.",
+        text: "Your doctor has been deleted.",
         icon: "success",
       });
     },
@@ -85,7 +85,7 @@ const Products = () => {
     <div className="bg-lightgray h-full w-full p-6 pb-11">
       <div className="flex justify-between">
         <h1 className=" text-[32px] font-bold   text-black leading-[38.4px] ">
-          All Doctors({data?.counts})
+          All Doctors {data?.counts && <>({data?.counts})</>}
         </h1>
         <Link
           to="/add-doctor"
@@ -129,12 +129,14 @@ const Products = () => {
                     Image
                   </th>
                   <th className="text-[14px] font-bold text-black ">
-                    specialization1
+                    Specialization1
                   </th>
                   <th className="text-[14px] font-bold text-black">
                     DiseaseHandle
                   </th>
-                  <th className="text-[14px] font-bold text-black">Experience</th>
+                  <th className="text-[14px] font-bold text-black">
+                    Experience
+                  </th>
                   <th className="text-[14px] font-bold text-black text-center">
                     Action
                   </th>
