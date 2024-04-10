@@ -94,7 +94,7 @@ const Sidebar = () => {
               : "hover:bg-slate-100"
               }`}
           >
-            <div className="w-1/3">
+            <div className="w-1/2">
               <div className="text-left">{link.label}</div>
             </div>
           </Link>
@@ -106,7 +106,7 @@ const Sidebar = () => {
           onClick={handleLogout}
           className="w-full flex justify-center rounded-md text-neutral-800 text-sm font-semibold tracking-tight  py-3.5 hover:bg-slate-100"
         >
-          <div className="w-1/3">
+          <div className="w-1/2">
             <div className="text-left">Logout</div>
           </div>
         </button>
