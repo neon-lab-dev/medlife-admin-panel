@@ -34,4 +34,6 @@ export const API = {
 
   //reviews
   reviewsDetails: BACKEND_BASE_URL + "/reviews", //to get all reviews details
+  getAdminReviews: BACKEND_BASE_URL + "/areviews", //to get admin all reviews details
+  updateReviewStatus: BACKEND_BASE_URL + "/reviewstatus", // /:id
 };
