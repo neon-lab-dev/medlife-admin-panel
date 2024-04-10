@@ -12,21 +12,25 @@ const ROUTES = [
     path: "/dashboard",
     component: lazy(async () => await import("../pages/Home/index")),
   },
+  // doctor start 
   {
-    path: "/products",
-    component: lazy(async () => await import("../pages/Products/index")),
-  },
-  {
-    path: "/add-product",
+    path: "/doctor",
     component: lazy(
-      async () => await import("../pages/Products/CreateProduct")
+      async () => await import("../pages/Doctor/index")
     ),
   },
   {
-    path: "/update-product/:productId",
+    path: "/add-doctor",
     component: lazy(
-      async () => await import("../pages/Products/UpdateProduct")
+      async () => await import("../pages/Doctor/CreateDoctor")
     ),
+  },
+  {
+    path: "/update-doctor/:doctorId",
+    component: lazy(
+      async () => await import("../pages/Doctor/UpdateDoctor")
+    ),
+    // doctor end
   },
   {
     path: "/orders",

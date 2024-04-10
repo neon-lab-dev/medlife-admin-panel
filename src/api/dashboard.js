@@ -45,7 +45,7 @@ export const getConnectedUserCount = () => {
 export const getDoctorsCount = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(API.doctorsDetails, {
+      .get(API.getAllDoctors, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

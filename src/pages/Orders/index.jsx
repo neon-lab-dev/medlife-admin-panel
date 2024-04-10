@@ -16,40 +16,53 @@ import { MAX_ROWS_PER_PAGE } from "../../assets/data/constants";
 import NoDataFound from "../../components/NoDataFound";
 import { getOrderStatusLength } from "../../utils/getOrderStatusLength";
 import jsonToXlsx from "../../utils/jsonAsXlsx";
+import { useNavigate } from 'react-router-dom';
+
 
 const Orders = () => {
+  const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState("");
   const [startingIndex, setStartingIndex] = useState(0);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [filterByStatus, setFilterByStatus] = useState(ORDER_STATUS[0]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState([
+    { _id: '1', itemsPrice: "2000", orderStatus: "one", Action: "true" },
+    { _id: '2', itemsPrice: "2000", orderStatus: "one", Action: "true" },
+    { _id: '3', itemsPrice: "2000", orderStatus: "one", Action: "true" },
+    { _id: '4', itemsPrice: "2000", orderStatus: "one", Action: "true" },
+    { _id: '5', itemsPrice: "2000", orderStatus: "one", Action: "true" },
+
+  ]);
+
   const { data, isError, isLoading } = useQuery({
     queryFn: () => getAllOrders(),
     queryKey: ["orders"],
   });
-
-  useEffect(() => {
-    if (data) {
-      const filteredData = searchObjects(data, searchQuery, [
-        "_id",
-        "itemsPrice",
-      ]);
-      if (filterByStatus.toLowerCase() !== "all") {
-        const filterByStatusData = searchObjects(filteredData, filterByStatus, [
-          "orderStatus",
-        ]);
-        setFilteredData(filterByStatusData);
-      } else {
-        setFilteredData(filteredData);
-      }
-    }
-  }, [data, searchQuery, filterByStatus]);
+  // useEffect(() => {
+  //   if (data) {
+  //     const filteredData = searchObjects(data, searchQuery, [
+  //       "_id",
+  //       "itemsPrice",
+  //     ]);
+  //     if (filterByStatus.toLowerCase() !== "all") {
+  //       const filterByStatusData = searchObjects(filteredData, filterByStatus, [
+  //         "orderStatus",
+  //       ]);
+  //       setFilteredData(filterByStatusData);
+  //     } else {
+  //       setFilteredData(filteredData);
+  //     }
+  //   }
+  // }, [data, searchQuery, filterByStatus]);
 
   return (
     <div className="bg-lightgray h-full w-full p-6 pb-11">
-      <h1 className="font-lato text-[32px] font-bold   text-black leading-[38.4px] ">
-        Total Orders
-      </h1>
+      <div className="flex justify-between">
+        <h1 className="font-lato text-[32px] font-bold   text-black leading-[38.4px] ">
+          Total Doctor(80)
+        </h1>
+        <button onClick={e => navigate("/add-doctor")} className="btn btn-primary">Add Doctors</button>
+      </div>
       <div className="bg-white overflow-x-auto mt-3 rounded-[16px] p-4 pb-12 px-5">
         <div className=" justify-between flex items-center ">
           {/* Searchbar */}
@@ -90,10 +103,9 @@ const Orders = () => {
                           <li
                             key={i}
                             onClick={() => setFilterByStatus(item)}
-                            className={`p-2 rounded-md capitalize hover:text-white hover:bg-red ${
-                              item === filterByStatus &&
+                            className={`p-2 rounded-md capitalize hover:text-white hover:bg-red ${item === filterByStatus &&
                               "bg-red text-white my-1"
-                            }`}
+                              }`}
                           >
                             {item}{" "}
                             {!isLoading && !isError && data ? (
@@ -127,73 +139,75 @@ const Orders = () => {
 
         <div className="mt-4">
           <div className="overflow-x-auto">
-            {isLoading ? (
+            {/* {
+            isLoading ? (
               <AppLoading />
-            ) : !isError && filteredData ? (
-              <table className="table rounded-2xl table-lg">
-                {/* head */}
-                <thead className=" rounded-[12px] bg-gray1">
-                  <tr className="">
-                    <th className="font-bold font-lato text-black text-[14px]">
-                      ID
-                    </th>
-                    <th className="font-bold font-lato text-black text-[14px]">
-                      Total Price
-                    </th>
-                    <th className="font-bold text-center font-lato text-black text-[14px]">
-                      Order Status
-                    </th>
-                    <th className=" font-bold text-center font-lato text-black text-[14px]">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
+            ) : !isError && filteredData ?
+             ( */}
+            <table className="table rounded-2xl table-lg">
+              {/* head */}
+              <thead className=" rounded-[12px] bg-gray1">
+                <tr className="">
+                  <th className="font-bold font-lato text-black text-[14px]">
+                    ID
+                  </th>
+                  <th className="font-bold font-lato text-black text-[14px]">
+                    Total Price
+                  </th>
+                  <th className="font-bold text-center font-lato text-black text-[14px]">
+                    Docter Status
+                  </th>
+                  <th className=" font-bold text-center font-lato text-black text-[14px]">
+                    Action
+                  </th>
+                </tr>
+              </thead>
 
-                {filteredData.length > 0 ? (
-                  <tbody>
-                    {filteredData
-                      ?.slice(startingIndex, startingIndex + MAX_ROWS_PER_PAGE)
-                      ?.map((item) => (
-                        <tr key={item._id} className="">
-                          <td className="font-lato font-semibold text-[14px] text-black">
-                            {item._id}
-                          </td>
-                          <td className="font-lato font-semibold text-[14px] text-black">
-                            ₹{item.itemsPrice}
-                          </td>
-                          <td className="flex justify-center items-center font-lato font-semibold text-[14px]">
-                            <div
-                              className={` w-[93px] text-center py-1 rounded-md capitalize ${getStatusColor(
-                                item.orderStatus
-                              )} text-white`}
-                            >
-                              {item.orderStatus}
-                            </div>
-                          </td>
+              {filteredData.length > 0 ? (
+                <tbody>
+                  {filteredData
+                    // ?.slice(startingIndex, startingIndex + MAX_ROWS_PER_PAGE)
+                    ?.map((item) => (
+                      <tr key={item._id} className="">
+                        <td className="font-lato font-semibold text-[14px] text-black">
+                          {item._id}
+                        </td>
+                        <td className="font-lato font-semibold text-[14px] text-black">
+                          ₹{item.itemsPrice}
+                        </td>
+                        <td className="flex justify-center items-center font-lato font-semibold text-[14px]">
+                          <div
+                            className={` w-[93px] text-center py-1 rounded-md capitalize ${getStatusColor(
+                              item.orderStatus
+                            )} text-white`}
+                          >
+                            {item.orderStatus}
+                          </div>
+                        </td>
 
-                          <td className=" text-center font-lato font-semibold text-[14px]">
-                            <button
-                              onClick={() => {
-                                setSelectedOrderId(item._id);
-                                window.orderDetailModal.showModal();
-                                const dd = document.getElementById("orderInfo");
-                                dd.scrollTop = 0;
-                              }}
-                              className="btn text-nowrap btn-sm btn-outline btn-primary rounded-md text-white"
-                            >
-                              View Orders
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                ) : (
-                  <NoDataFound />
-                )}
-              </table>
-            ) : (
+                        <td className=" text-center font-lato font-semibold text-[14px]">
+                          <button
+                            onClick={() => {
+                              setSelectedOrderId(item._id);
+                              window.orderDetailModal.showModal();
+                              const dd = document.getElementById("orderInfo");
+                              dd.scrollTop = 0;
+                            }}
+                            className="btn text-nowrap btn-sm btn-outline btn-primary rounded-md text-white"
+                          >
+                            View Orders
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              ) : (
+                <NoDataFound />
+              )}
+            </table>
+            {/* ) : (
               <SomeErrorOccurred />
-            )}
+            )} */}
           </div>
           <hr />
           {filteredData.length > 0 && (

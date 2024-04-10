@@ -19,7 +19,7 @@ const Sidebar = () => {
     },
     {
       label: "Doctor",
-      path: "/orders",
+      path: "/doctor",
     },
     {
       label: "Users",
@@ -74,7 +74,7 @@ const Sidebar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         mutate();
-        
+
       }
     });
   };
@@ -89,11 +89,10 @@ const Sidebar = () => {
           <Link
             key={index}
             to={link.path}
-            className={`w-full flex justify-center rounded-[16px] text-neutral-800 text-sm font-semibold tracking-tight  py-3.5 ${
-              pathname === link.path
-                ? "bg-[#00A79D] text-white "
-                : "hover:bg-slate-100"
-            }`}
+            className={`w-full flex justify-center rounded-[16px] text-neutral-800 text-sm font-semibold tracking-tight  py-3.5 ${pathname === link.path
+              ? "bg-[#00A79D] text-white "
+              : "hover:bg-slate-100"
+              }`}
           >
             <div className="w-1/3">
               <div className="text-left">{link.label}</div>
