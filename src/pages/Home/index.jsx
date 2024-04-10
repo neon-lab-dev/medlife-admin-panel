@@ -1,15 +1,22 @@
 import ItemCard from "./ItemCard";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getAllUserCount,getConnectedUserCount,getDoctorsCount,getReviewsCount } from "../../api/dashboard.js";
+import {
+  getAllUserCount,
+  getConnectedUserCount,
+  getDoctorsCount,
+  getReviewsCount,
+} from "../../api/dashboard.js";
 import AppLoading from "../../components/loaders/AppLoading.jsx";
 import SomeErrorOccurred from "../Error/SomeErrorOccurred.jsx";
 import DASHBOARD_CARDS from "../../assets/data/dashboardCards.js";
 const Home = () => {
-  const [details, setDetails] = useState({
-  })
+  const [details, setDetails] = useState({});
   const {
-    data: allUserData,isSuccess,isLoading,isError
+    data: allUserData,
+    isSuccess,
+    isLoading,
+    isError,
   } = useQuery({
     queryKey: ["allUser"],
     queryFn: async () => {
@@ -17,23 +24,31 @@ const Home = () => {
       const connectedUserCountData = await getConnectedUserCount();
       const doctorCountData = await getDoctorsCount();
       const reviewsCountData = await getReviewsCount();
-      return {allUserCountData, connectedUserCountData,doctorCountData,reviewsCountData};
+      return {
+        allUserCountData,
+        connectedUserCountData,
+        doctorCountData,
+        reviewsCountData,
+      };
     },
   });
 
   useEffect(() => {
-    if(isSuccess){
-    const { allUserCountData, connectedUserCountData,doctorCountData,reviewsCountData } = allUserData;
-    setDetails({
-      "Active User":allUserCountData,
-      "Conneted User":connectedUserCountData,
-      "Doctors":doctorCountData,
-      "Reviews":reviewsCountData
-    }); 
-  }
-  }, [isSuccess])
- 
-  
+    if (isSuccess) {
+      const {
+        allUserCountData,
+        connectedUserCountData,
+        doctorCountData,
+        reviewsCountData,
+      } = allUserData;
+      setDetails({
+        "Active User": allUserCountData,
+        "Connected User": connectedUserCountData,
+        Doctors: doctorCountData,
+        Reviews: reviewsCountData,
+      });
+    }
+  }, [isSuccess]);
 
   return (
     <div className="text-primary bg-[#F5F6FA] h-full w-full px-6 py-2">

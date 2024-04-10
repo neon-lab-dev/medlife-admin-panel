@@ -18,7 +18,7 @@ const User = () => {
   const [startingIndex, setStartingIndex] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [idToChange, setIdToChange] = useState("")
+  const [idToChange, setIdToChange] = useState("");
 
   const {
     data: userData,
@@ -50,8 +50,6 @@ const User = () => {
       });
     },
   });
-
-  
 
   useEffect(() => {
     if (userData) {
@@ -153,11 +151,13 @@ const User = () => {
                               <button
                                 className="btn btn-outline btn-info"
                                 onClick={() => {
-                                 mutate(user._id);
-                                 setIdToChange(user._id)
+                                  mutate(user._id);
+                                  setIdToChange(user._id);
                                 }}
                               >
-                                {(isPending && idToChange==user._id)?"Changing....":"Change Status"}
+                                {isPending && idToChange == user._id
+                                  ? "Changing...."
+                                  : "Change Status"}
                               </button>
                             </td>
                           </tr>

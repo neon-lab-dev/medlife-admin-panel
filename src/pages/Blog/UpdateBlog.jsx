@@ -195,7 +195,7 @@ const UpdateBlogModal = ({ data }) => {
                       <span className="loading loading-spinner loading-md text-white"></span>
                     ) : (
                       <p className="w-[100.56px] h-6 text-center text-white text-lg font-bold font-lato leading-snug">
-                        Create
+                        Update
                       </p>
                     )}
                   </button>
