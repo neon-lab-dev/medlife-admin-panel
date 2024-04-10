@@ -4,7 +4,7 @@ import { API } from ".";
 export const getAllReviews = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(API.allReviews, {
+      .get(API.getAdminReviews, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
