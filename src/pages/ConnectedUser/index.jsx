@@ -15,7 +15,6 @@ const ConnectedUser = () => {
   const [startingIndex, setStartingIndex] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isBirthdayTodayActive, setIsBirthdayTodayActive] = useState(false);
 
   const {
     data: connectedUserData,
@@ -25,18 +24,17 @@ const ConnectedUser = () => {
     queryKey: ["connectedUsers"],
     queryFn: () => getConnectedUserDetails(),
   });
-  console.log(connectedUserData);
   useEffect(() => {
     if (connectedUserData) {
       const filteredData = searchObjects(connectedUserData, searchQuery, [
         "_id",
-        "full_name",
-        "phoneNo",
-        "email",
+        "name",
+        "mobileNumber",
+        "city",
       ]);
       setFilteredData(filteredData);
     }
-  }, [connectedUserData, searchQuery, isBirthdayTodayActive]);
+  }, [connectedUserData, searchQuery]);
 
 
   return (
@@ -49,7 +47,7 @@ const ConnectedUser = () => {
         <div className=" justify-between flex items-center ">
           {/* Searchbar */}
           <Searchbar
-            placeholder="Search by ID, Name, Email, Mobile No"
+            placeholder="Search by ID, Name, City, Mobile No"
             onChange={(e) => {
               setSearchQuery(e.target.value);
               setStartingIndex(0);
@@ -60,7 +58,7 @@ const ConnectedUser = () => {
            
             <button
               disabled={isLoading || isError}
-              onClick={() => jsonToXlsx(connectedUserData, "users")}
+              onClick={() => jsonToXlsx(connectedUserData, "Connected users")}
               className=" bg-lightgray  rounded-[6px] disabled:opacity-50"
             >
               <img src={downloadIcon} alt="" />

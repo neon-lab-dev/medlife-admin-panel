@@ -30,7 +30,6 @@ const Home = () => {
       "Doctors":doctorCountData,
       "Reviews":reviewsCountData
     }); 
-    console.log(details);
   }
   }, [isSuccess])
  
