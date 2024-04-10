@@ -2,26 +2,30 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import AppFormErrorLine from "../../components/AppFromErrorLine";
-import { useRef, useState } from "react";
-import { createBlog } from "../../api/blog";
+import { useEffect, useRef, useState } from "react";
+import { createBlog, updateBlog } from "../../api/blog";
 
-const CreateCouponModal = () => {
+const UpdateBlogModal = ({ data }) => {
   const queryClient = useQueryClient();
   const inputRef = useRef();
-  const [selectedImage, setSelectedImage] = useState(null);
+
+  const [selectedImage, setSelectedImage] = useState(data?.avatar?.url);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
     reset,
+    setValue,
   } = useForm();
+
   watch();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (data) => createBlog({ data }),
+    mutationFn: ({ id, data }) => updateBlog({ id, data }),
     onError: (error) => {
-      document.getElementById("create_new_blog").close();
+      document.getElementById("update_blog").close();
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -30,34 +34,42 @@ const CreateCouponModal = () => {
       reset();
     },
     onSuccess: (data) => {
-      document.getElementById("create_new_blog").close();
+      document.getElementById("update_blog").close();
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
       Swal.fire({
         icon: "success",
-        title: "Blog created",
+        title: "Blog updated",
         text: data,
       });
       reset();
     },
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (fData) => {
     const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("about", data.desc);
+    formData.append("title", fData.title);
+    formData.append("about", fData.desc);
 
     if (selectedImage) {
       const blob = await fetch(selectedImage).then((r) => r.blob());
       formData.append("file", blob);
     }
 
-    mutate(formData);
+    mutate({ id: data?._id, data: formData });
   };
+
+  useEffect(() => {
+    if (data) {
+      setSelectedImage(data?.avatar?.url);
+      setValue("title", data?.title);
+      setValue("desc", data?.about);
+    }
+  }, [data]);
 
   return (
     <>
       {/*Blog Modal Start */}
-      <dialog id="create_new_blog" className="modal">
+      <dialog id="update_blog" className="modal">
         <div className="modal-box lg:w-[863px] lg:h-[810px] sm:h-[1/6] w-5/6 max-w-5xl h-1/2 max-h-5xl">
           <form method="dialog">
             <button
@@ -85,7 +97,7 @@ const CreateCouponModal = () => {
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <p className="w-[324px] text-start text-black text-2xl font-semibold font-lato tracking-tight">
-                    Create New Blog
+                    Update Blog
                   </p>
                   <input
                     ref={inputRef}
@@ -198,4 +210,4 @@ const CreateCouponModal = () => {
   );
 };
 
-export default CreateCouponModal;
+export default UpdateBlogModal;
