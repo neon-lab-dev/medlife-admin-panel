@@ -26,7 +26,7 @@ const Home = () => {
     const { allUserCountData, connectedUserCountData,doctorCountData,reviewsCountData } = allUserData;
     setDetails({
       "Active User":allUserCountData,
-      "Conneted User":connectedUserCountData,
+      "Connected":connectedUserCountData,
       "Doctors":doctorCountData,
       "Reviews":reviewsCountData
     }); 
