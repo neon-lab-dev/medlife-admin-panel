@@ -35,7 +35,7 @@ const Sidebar = () => {
     },
     {
       label: "Blogs",
-      path: "/Blogs",
+      path: "/blog",
     },
   ];
 
