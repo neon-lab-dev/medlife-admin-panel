@@ -125,8 +125,7 @@ const CreateProduct = () => {
                                 <input {...register("doctorName",
                                     {
                                         required: { value: true, message: "This field is required" },
-                                        minLength: { value: 3, message: "Minimum length is 3 character " },
-                                        maxLength: { value: 15, message: "Minimum length is 15 character" }
+                                        minLength: { value: 2, message: "Minimum length is 2 character " },
                                     })} className={` h-[45px] w-full rounded-xl border-darkstone outline-none border ps-3 text-[16px] text-gray2 ${errors.doctorName && "border-red"}`} type="text" placeholder="Enter Doctor Name" />
 
                                 {errors.doctorName && <span className='text-red ms-2'>{errors.doctorName.message}</span>}
@@ -204,17 +203,13 @@ const CreateProduct = () => {
                             </div>
                             <div className="my-5">
                                 <input
-                                    {...register("specialization2", {
-                                        required: { value: true, message: "This field is required" },
-                                    })}
+                                    {...register("specialization2")}
                                     className={`w-full h-[45px] rounded-xl border-darkstone outline-none border ps-3 text-[16px] text-gray2 ${errors.specialization2 && "border-red"}`} type="text" placeholder="Enter Doctor Specification 2" />
                                 {errors.specialization2 && <span className='text-red ms-2'>{errors.specialization2.message}</span>}
                             </div>
                             <div className="my-5">
                                 <input
-                                    {...register("specialization3", {
-                                        required: { value: true, message: "This field is required" },
-                                    })}
+                                    {...register("specialization3")}
                                     className={`w-full h-[45px] rounded-xl border-darkstone outline-none border ps-3 text-[16px] text-gray2 ${errors.specialization3 && "border-red"}`} type="text" placeholder="Enter Doctor Specification 3" />
                                 {errors.specialization3 && <span className='text-red ms-2'>{errors.specialization3.message}</span>}
                             </div>
@@ -315,12 +310,6 @@ const CreateProduct = () => {
                         {specialization1 ? <span className='text-base font-semibold'>{specialization1}</span> : <span className='text-red text-base'>Please enter Specialization1!</span>}
                     </div>
 
-                    <div className='my-[15px] flex items-center gap-2 flex-wrap lg:text-[16px] max-xl:text-[18px]'>Specialization2:
-                        {specialization2 ? <span className='text-base font-semibold'>{specialization2}</span> : <span className='text-red text-base'>Please enter Specialization2!</span>}
-                    </div>
-                    <div className='my-[15px] flex items-center gap-2 flex-wrap lg:text-[16px] max-xl:text-[18px]'>Specialization3:
-                        {specialization3 ? <span className='text-base font-semibold'>{specialization3}</span> : <span className='text-red text-base'>Please enter Specialization3!</span>}
-                    </div>
 
 
                     <div className="text-center">
