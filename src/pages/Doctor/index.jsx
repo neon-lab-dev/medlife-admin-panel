@@ -24,7 +24,7 @@ const Products = () => {
   const { data, isSuccess, isLoading } = useQuery({
     queryFn: getAllDoctors,
     queryKey: ["doctors"],
-  });
+  })
 
   // mutation for delete product
   const { mutate, isPending } = useMutation({
