@@ -5,45 +5,45 @@ import { lazy } from "react";
 
 const ROUTES = [
   {
-    path: "/",
+    path: "",
     component: lazy(async () => await import("../pages/Home/index")),
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     component: lazy(async () => await import("../pages/Home/index")),
   },
   // doctor start
   {
-    path: "/doctor",
+    path: "doctor",
     component: lazy(async () => await import("../pages/Doctor/index")),
   },
   {
-    path: "/add-doctor",
+    path: "add-doctor",
     component: lazy(async () => await import("../pages/Doctor/CreateDoctor")),
   },
   {
-    path: "/update-doctor/:doctorId",
+    path: "update-doctor/:doctorId",
     component: lazy(async () => await import("../pages/Doctor/UpdateDoctor")),
     // doctor end
   },
   {
-    path: "/users",
+    path: "users",
     component: lazy(async () => await import("../pages/User/index")),
   },
   {
-    path: "/connected-users",
+    path: "connected-users",
     component: lazy(async () => await import("../pages/ConnectedUser/index")),
   },
   {
-    path: "/login",
+    path: "login",
     component: lazy(async () => await import("../pages/Login/index")),
   },
   {
-    path: "/reviews",
+    path: "reviews",
     component: lazy(async () => await import("../pages/Reviews/index")),
   },
   {
-    path: "/blog",
+    path: "blog",
     component: lazy(async () => await import("../pages/Blog/index")),
   },
   {

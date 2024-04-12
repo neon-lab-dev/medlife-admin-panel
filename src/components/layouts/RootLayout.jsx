@@ -20,7 +20,7 @@ const RootLayout = ({ children }) => {
   if (pathname === "/login") return children;
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
   if (isAuthenticated && user?.role?.toLowerCase() !== "admin") {
     Swal.fire({
@@ -28,7 +28,7 @@ const RootLayout = ({ children }) => {
       title: "Oops...",
       text: "You are not authorized to view this page. Please login with an admin account.",
     });
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
 
   return (
