@@ -17,7 +17,7 @@ const RootLayout = ({ children }) => {
     return <NotSupported />;
   }
   if (isAuthenticating) return <AppLoading />;
-  if (pathname === "/login") return children;
+  if (pathname === "/admin/login") return children;
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" />;

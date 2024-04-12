@@ -49,7 +49,11 @@ const Sidebar = () => {
         })
         .then(() => {
           dispatch(logoutUser());
-          toast.success("Logged out successfully");
+          Swal.fire({
+            icon: "success",
+            title: "Logout",
+            text: "You have been logged out successfully",
+          });
           navigate("/admin");
         });
     },
