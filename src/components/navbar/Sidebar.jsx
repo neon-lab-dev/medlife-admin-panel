@@ -5,7 +5,7 @@ import { logout } from "../../api/auth";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/slices/userSlice";
 import Swal from "sweetalert2";
-import logomedlife from '../../assets/images/logo.png'
+import logomedlife from "../../assets/images/logo.png";
 
 const Sidebar = () => {
   const queryClient = useQueryClient();
@@ -15,27 +15,27 @@ const Sidebar = () => {
   const links = [
     {
       label: "Dashboard",
-      path: "/",
+      path: "/admin/",
     },
     {
       label: "Doctor",
-      path: "/doctor",
+      path: "/admin/doctor",
     },
     {
       label: "Users",
-      path: "/users",
+      path: "/admin/users",
     },
     {
       label: "Connected User",
-      path: "/connected-users",
+      path: "/admin/connected-users",
     },
     {
       label: "Reviews",
-      path: "/reviews",
+      path: "/admin/reviews",
     },
     {
       label: "Blogs",
-      path: "/blog",
+      path: "/admin/blog",
     },
   ];
 
@@ -50,7 +50,7 @@ const Sidebar = () => {
         .then(() => {
           dispatch(logoutUser());
           toast.success("Logged out successfully");
-          navigate("/");
+          navigate("/admin");
         });
     },
     onError: (err) => {
@@ -74,14 +74,13 @@ const Sidebar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         mutate();
-
       }
     });
   };
 
   return (
     <aside className="lg:min-w-[260px] max-w-[260px] md:min-w-[200px] hidden md:block bg-white h-screen">
-      <Link to="/" className="flex justify-center">
+      <Link to="/admin/" className="flex justify-center">
         <img className="my-4 w-[160px]" src={logomedlife} />
       </Link>
       <div className="flex flex-col gap-3 items-center justify-center mt-6 px-5">
@@ -89,10 +88,11 @@ const Sidebar = () => {
           <Link
             key={index}
             to={link.path}
-            className={`w-full flex justify-center rounded-[16px] text-neutral-800 text-sm font-semibold tracking-tight  py-3.5 ${pathname === link.path
-              ? "bg-[#00A79D] text-white "
-              : "hover:bg-slate-100"
-              }`}
+            className={`w-full flex justify-center rounded-[16px] text-neutral-800 text-sm font-semibold tracking-tight  py-3.5 ${
+              pathname === link.path
+                ? "bg-[#00A79D] text-white "
+                : "hover:bg-slate-100"
+            }`}
           >
             <div className="w-1/2">
               <div className="text-left">{link.label}</div>

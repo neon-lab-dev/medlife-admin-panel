@@ -24,7 +24,7 @@ const Products = () => {
   const { data, isSuccess, isLoading } = useQuery({
     queryFn: getAllDoctors,
     queryKey: ["doctors"],
-  })
+  });
 
   // mutation for delete product
   const { mutate, isPending } = useMutation({
@@ -88,7 +88,7 @@ const Products = () => {
           All Doctors {data?.counts && <>({data?.counts})</>}
         </h1>
         <Link
-          to="/add-doctor"
+          to="/admin/add-doctor"
           type="button"
           className="bg-[#00A79D] text-[14px] rounded-md text-white w-[192px] h-[50px] flex justify-center items-center gap-3"
         >
@@ -175,7 +175,7 @@ const Products = () => {
                         <td className="text-[14px] text-center font-semibold text-black">
                           <div className="flex items-center justify-center gap-3">
                             <Link
-                              to={`/update-doctor/${item._id}`}
+                              to={`/admin/update-doctor/${item._id}`}
                               type="button"
                               class="btn  h-[38px] min-h-[38px] w-[64px] max-h-[38px]  btn-primary btn-outline"
                             >

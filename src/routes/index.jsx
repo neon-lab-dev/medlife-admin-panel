@@ -9,22 +9,24 @@ const RoutesContainer = () => {
   return (
     <Router>
       <Routes>
-        {ROUTES.map(({ component: Component, path }, index) => {
-          return (
-            <Route
-              key={index}
-              path={path}
-              errorElement={<SomeErrorOccurred />}
-              element={
-                <AppLayout>
-                  <Suspense fallback={<AppLoading />}>
-                    <Component />
-                  </Suspense>
-                </AppLayout>
-              }
-            />
-          );
-        })}
+        <Route path="admin">
+          {ROUTES.map(({ component: Component, path }, index) => {
+            return (
+              <Route
+                key={index}
+                path={path}
+                errorElement={<SomeErrorOccurred />}
+                element={
+                  <AppLayout>
+                    <Suspense fallback={<AppLoading />}>
+                      <Component />
+                    </Suspense>
+                  </AppLayout>
+                }
+              />
+            );
+          })}
+        </Route>
       </Routes>
     </Router>
   );
